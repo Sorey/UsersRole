@@ -1,0 +1,39 @@
+<div class="container">
+    <p>
+        <h2>User <em><%= @user.first_name %> <%= @user.last_name %></em></h2>
+    </p>
+
+  <div class="container">
+    <table class="table table-condensed table-striped" style="border-style:solid; border-color:#63B8FF">
+      <tbody>
+          <tr>
+            <th>Role</th>
+            <td>
+              <% @roles = @user.roles %>
+              <% @roles.each do |r| %>
+                  <%= r.name  %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <th>First_name</th>
+            <td><%= @user.first_name %></td>
+          </tr>
+          <tr>
+            <th>Last_name</th>
+            <td><%= @user.last_name %></td>
+          </tr>
+          <tr>
+            <th>Email</th>
+            <td><%= @user.email %></td>
+          </tr>
+      </tbody>
+    </table>
+
+  </div>
+  <%= link_to 'Back', users_path(@user), :class => 'btn btn-primary' %>
+  <%= link_to 'Edit', edit_user_path(@user), :class => 'btn btn-primary' %>
+  <%= link_to 'Destroy', user_path(@user), :class => 'btn btn-primary',
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %>
+</div>

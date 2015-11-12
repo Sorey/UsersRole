@@ -1,0 +1,44 @@
+<div class="users">
+
+  <div class="container">
+    <div class="col-sm-11">
+      <h1>List users</h1>
+    </div>
+    <div class="col-sm-1">
+      <h1><%= link_to 'New user', new_user_path, :class => 'btn btn-primary' %></h1>
+    </div>
+  </div>
+
+  <div class="container">
+    <table class="table table-condensed table-striped" style="border-style:solid; border-color:#63B8FF">
+      <thead>
+          <tr>
+            <th>#</th>
+            <th>Role</th>
+            <th>First_name</th>
+            <th>Last_name</th>
+            <th>Email</th>
+            <th>Show</th>
+          </tr>
+      </thead>
+      <tbody>
+          <% @users.each do |u|%>
+              <tr>
+                <td><%= u.id %></td>
+                <td>
+                  <% @roles = u.roles %>
+                  <% @roles.each do |r| %>
+                      <%= r.name  %>
+                  <% end %>
+                </td>
+                <td><%= u.first_name %></td>
+                <td><%= u.last_name %></td>
+                <td><%= u.email %></td>
+                <td><%= link_to "Show user", user_path(u), :class => 'btn btn-primary' %></td>
+              </tr>
+          <% end %>
+      </tbody>
+    </table>
+
+  </div>
+</div>
