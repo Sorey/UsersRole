@@ -1,5 +1,21 @@
 class UsersController < ApplicationController
 
+
+  if before_action :require_editor
+    before_action :require_editor, only: [:show, :edit]
+  else
+    before_action :require_admin, only: [:new, :show, :edit, :destroy]
+  end
+  # if before_action :require_admin
+  #   before_action :require_admin, only: [:new, :show, :edit, :destroy]
+  # end
+  # if before_action :require_editor
+  #   before_action :require_editor, only: [:show, :edit]
+  # end
+
+
+
+
   def index
     @users = User.all
   end
@@ -64,9 +80,10 @@ class UsersController < ApplicationController
   end
 
   private
-  def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, role_ids: [])
-  end
+
+    def user_params
+      params.require(:user).permit(:login, :first_name, :last_name, :email, :password, :password_confirmation, role_ids: [])
+    end
 
 
 end

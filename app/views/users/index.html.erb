@@ -15,8 +15,7 @@
           <tr>
             <th>#</th>
             <th>Role</th>
-            <th>First_name</th>
-            <th>Last_name</th>
+            <th>Login</th>
             <th>Email</th>
             <th>Show</th>
           </tr>
@@ -31,8 +30,7 @@
                       <%= r.name  %>
                   <% end %>
                 </td>
-                <td><%= u.first_name %></td>
-                <td><%= u.last_name %></td>
+                <td><%= u.login %></td>
                 <td><%= u.email %></td>
                 <td><%= link_to "Show user", user_path(u), :class => 'btn btn-primary' %></td>
               </tr>

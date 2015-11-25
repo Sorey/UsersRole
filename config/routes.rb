@@ -1,7 +1,22 @@
 Rails.application.routes.draw do
+
+  controller :sessions do
+    get  'login' => :new
+    post 'login' => :create
+    delete 'logout' => :destroy
+  end
+
+  get 'sessions/new'
+
+  get 'sessions/create'
+
+  get 'sessions/destroy'
+
   get 'users' => 'users#index'
 
   resources :users
+  # root 'cuisines#index'
+  root to: 'users#index', as: 'user_s'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
