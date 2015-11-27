@@ -5,7 +5,9 @@
       <h1>List users</h1>
     </div>
     <div class="col-sm-1">
-      <h1><%= link_to 'New user', new_user_path, :class => 'btn btn-primary' %></h1>
+      <% if current_user && current_user.admin? %>
+        <h1><%= link_to 'New user', new_user_path, :class => 'btn btn-primary' %></h1>
+      <% end %>
     </div>
   </div>
 
@@ -15,8 +17,7 @@
           <tr>
             <th>#</th>
             <th>Role</th>
-            <th>First_name</th>
-            <th>Last_name</th>
+            <th>Login</th>
             <th>Email</th>
             <th>Show</th>
           </tr>
@@ -31,8 +32,7 @@
                       <%= r.name  %>
                   <% end %>
                 </td>
-                <td><%= u.first_name %></td>
-                <td><%= u.last_name %></td>
+                <td><%= u.login %></td>
                 <td><%= u.email %></td>
                 <td><%= link_to "Show user", user_path(u), :class => 'btn btn-primary' %></td>
               </tr>

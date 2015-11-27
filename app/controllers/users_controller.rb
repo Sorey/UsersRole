@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :require_editor, only: [:edit]
+  before_action :require_admin, only: [:new, :destroy]
 
   def index
     @users = User.all
@@ -64,9 +66,10 @@ class UsersController < ApplicationController
   end
 
   private
-  def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, role_ids: [])
-  end
+
+    def user_params
+      params.require(:user).permit(:login, :first_name, :last_name, :email, :password, :password_confirmation, role_ids: [])
+    end
 
 
 end
