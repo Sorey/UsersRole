@@ -41,8 +41,12 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
 
-    respond_to do |format|
-      if @user.update(user_params)
+    if params[:user][:password].empty? && params[:user][:password_confirmation].blank?
+      params[:user].delete(:password)
+      params[:user].delete(:password_confirmation)
+    end
+
+    respond_to do |format|                                                                                                                                                                                                                                                                                                                            if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render action: 'show', status: :created, location: @user }
       else
@@ -51,7 +55,7 @@ class UsersController < ApplicationController
       end
     end
     # if @user.update(user_params)
-    #   #session[:user_id] = @user.id
+    #   #session[:user_i                      d] = @user.id
     #   redirect_to @user #'/users'
     # else
     #   redirect_to '/users/edit'

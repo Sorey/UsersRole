@@ -35,7 +35,7 @@
     </table>
 
   </div>
-  <%= link_to 'Back', users_path(@user), :class => 'btn btn-primary' %>
+  <%= link_to 'Back', users_path, :class => 'btn btn-primary' %>
 
   <% if current_user && current_user.editor? %>
         <%= link_to 'Edit', edit_user_path(@user), :class => 'btn btn-primary' %>
