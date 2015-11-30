@@ -5,7 +5,9 @@
       <h1>List users</h1>
     </div>
     <div class="col-sm-1">
-      <h1><%= link_to 'New user', new_user_path, :class => 'btn btn-primary' %></h1>
+      <% if current_user && current_user.admin? %>
+        <h1><%= link_to 'New user', new_user_path, :class => 'btn btn-primary' %></h1>
+      <% end %>
     </div>
   </div>
 

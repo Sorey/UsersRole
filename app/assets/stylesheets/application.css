@@ -16,3 +16,13 @@
  *= require_self
 
  */
+body {
+    background: url(36.jpg);
+}
+body .users .table-striped > tbody > tr:nth-child(odd) > td{
+    background: url(51.png);
+}
+body .users .table-striped > tbody > tr:nth-child(even) > td{
+    background: url(53.png);
+}
+

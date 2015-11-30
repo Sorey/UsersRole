@@ -1,20 +1,6 @@
 class UsersController < ApplicationController
-
-
-  if before_action :require_editor
-    before_action :require_editor, only: [:show, :edit]
-  else
-    before_action :require_admin, only: [:new, :show, :edit, :destroy]
-  end
-  # if before_action :require_admin
-  #   before_action :require_admin, only: [:new, :show, :edit, :destroy]
-  # end
-  # if before_action :require_editor
-  #   before_action :require_editor, only: [:show, :edit]
-  # end
-
-
-
+  before_action :require_editor, only: [:edit]
+  before_action :require_admin, only: [:new, :destroy]
 
   def index
     @users = User.all
@@ -37,8 +23,14 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @user }
+        if :require_admin
+          format.html { redirect_to @user, notice: 'User was successfully created.' }
+          format.json { render action: 'show', status: :created, location: @user }
+        else
+          session[:user_id] = @user.id
+          format.html { render action: 'users', notice: 'User was successfully created!!!' }
+          format.json { render action: '/', status: :created, location: @user }
+        end
       else
         format.html { render action: 'new' }
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -55,8 +47,12 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
 
-    respond_to do |format|
-      if @user.update(user_params)
+    if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
+      params[:user].delete(:password)
+      params[:user].delete(:password_confirmation)
+    end
+
+    respond_to do |format|                                                                                                                                                                                                                                                                                                                            if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render action: 'show', status: :created, location: @user }
       else
@@ -65,7 +61,7 @@ class UsersController < ApplicationController
       end
     end
     # if @user.update(user_params)
-    #   #session[:user_id] = @user.id
+    #   #session[:user_i                      d] = @user.id
     #   redirect_to @user #'/users'
     # else
     #   redirect_to '/users/edit'

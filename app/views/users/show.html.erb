@@ -1,4 +1,7 @@
 <div class="container">
+  <% if notice %>
+      <p id="notice"><%= notice %></p>
+  <% end %>
     <p>
         <h2>User <em><%= @user.first_name %> <%= @user.last_name %></em></h2>
     </p>
@@ -21,11 +24,11 @@
           </tr>
           <tr>
             <th>First_name</th>
-            <td><%= @user.first_name %></td>
+            <td><%= @user.first_name  %></td>
           </tr>
           <tr>
             <th>Last_name</th>
-            <td><%= @user.last_name %></td>
+            <td><%= @user.last_name ||= "empty" %></td>
           </tr>
           <tr>
             <th>Email</th>
@@ -35,14 +38,13 @@
     </table>
 
   </div>
-  <%= link_to 'Back', users_path(@user), :class => 'btn btn-primary' %>
+  <%= link_to 'Back', users_path, :class => 'btn btn-primary' %>
 
   <% if current_user && current_user.editor? %>
         <%= link_to 'Edit', edit_user_path(@user), :class => 'btn btn-primary' %>
   <% end %>
 
   <% if current_user && current_user.admin? %>
-      <%= link_to 'Edit', edit_user_path(@user), :class => 'btn btn-primary' %>
       <%= link_to 'Destroy', user_path(@user), :class => 'btn btn-primary',
                   method: :delete,
                   data: { confirm: 'Are you sure?' } %>

@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
-  validates :first_name, :last_name, :email, presence: true
-  validates :first_name, :last_name, length: { minimum: 2}
-  validates :password,  length: { minimum: 6}, confirmation: true
+  validates :login, :email, presence: true
+  validates :login, length: { minimum: 2}
+  validates :password,  length: { minimum: 6}, on: :create #if :password.blank?
+  validates :password, confirmation: true
   validates :login, :email, uniqueness: true
   validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i #, on: :create
   #validates :password_confirmation, presence: true

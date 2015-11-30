@@ -17,5 +17,8 @@ r2 = Role.create(name: "Editor")
 r3 = Role.create(name: "User")
 
 u1.roles << [r1]
+u1.roles << [r2]
+u1.roles << [r3]
 u2.roles << [r2]
+u2.roles << [r3]
 u3.roles << [r3]

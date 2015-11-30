@@ -6,15 +6,18 @@ Rails.application.routes.draw do
     delete 'logout' => :destroy
   end
 
-  get 'sessions/new'
+  # get 'sessions/new'
+  #
+  # get 'sessions/create'
+  #
+  # get 'sessions/destroy'
+  #
+  # get 'users' => 'users#index'
 
-  get 'sessions/create'
+  # namespace :admin do
+    resources :users, path: "/admin/users"
+  # end
 
-  get 'sessions/destroy'
-
-  get 'users' => 'users#index'
-
-  resources :users
   # root 'cuisines#index'
   root to: 'users#index', as: 'user_s'
 
