@@ -12,9 +12,12 @@ u2 = User.create(login: "EditoR",first_name: "Editor", last_name: "Update", emai
 u3 = User.create(login: "UseR", first_name: "User", last_name: "See", email: "33user44@gmail.com", password: "765567", password_confirmation: "765567")
 
 Role.delete_all
-r1 = Role.create(id: 1, name: "Admin")
-r2 = Role.create(id: 2, name: "Editor")
-r3 = Role.create(id: 3, name: "User")
+# r1 = Role.create(id: 1, name: "Admin")
+# r2 = Role.create(id: 2, name: "Editor")
+# r3 = Role.create(id: 3, name: "User")
+r1 = Role.create(name: "Admin")
+r2 = Role.create(name: "Editor")
+r3 = Role.create(name: "User")
 
 Upart.delete_all
 u1.roles << [r1]
