@@ -10,6 +10,15 @@ class User < ActiveRecord::Base
   #validates :password, length: { minimum: 6, message: 'must be have minimum 8 characters.' }
   has_secure_password
 
+  # ----------------- test data from controller to model -----------
+  # def editor?(object)
+  #   # attr_reader :action
+  #   @roles = "users"
+  #   @true = object
+  #   # Rails.logger.debug @true
+  #   @true == @roles
+  # end
+
   def editor?
     @roles = self.roles
     @roles.each do |r|

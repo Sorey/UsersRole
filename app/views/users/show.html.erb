@@ -3,6 +3,8 @@
       <p id="notice"><%= notice %></p>
   <% end %>
     <p>
+        <h3><%= @name_controller = params[:controller] %></h3>
+        <h3><%= @name_action = params[:action] %></h3>
         <h2>User <em><%= @user.first_name %> <%= @user.last_name %></em></h2>
     </p>
 

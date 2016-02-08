@@ -12,6 +12,8 @@ class ApplicationController < ActionController::Base
 
   def require_editor
     redirect_to '/' unless current_user.editor?  # || current_user.admin?
+    # ----------------- test data from controller to model -----------
+    # redirect_to '/' unless current_user.editor?(params[:controller])
   end
 
   def require_admin

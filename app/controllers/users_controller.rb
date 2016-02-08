@@ -8,6 +8,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @name_controller = params
+    @name_action = params[:action]
   end
   
   def new
